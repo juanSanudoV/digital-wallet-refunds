@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS refunds (
+    id BIGSERIAL PRIMARY KEY,
+    wallet_id VARCHAR(50) NOT NULL,
+    amount NUMERIC(10, 2) NOT NULL,
+    reason VARCHAR(255),
+    status VARCHAR(50) NOT NULL,
+    external_transaction_id VARCHAR(100) UNIQUE NOT NULL,
+    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);

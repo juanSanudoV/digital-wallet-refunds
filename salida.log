@@ -1,0 +1,45 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.3)
+
+2026-09-17T21:57:47.266-06:00  INFO 34608 --- [           main] c.d.r.DigitalWalletRefundsApplication    : Starting DigitalWalletRefundsApplication v0.0.1 using Java 21.0.4 with PID 34608 (C:\Users\POWER\Documents\Java\digital-wallet-refunds\digital-wallet-refunds\target\digital-wallet-refunds-0.0.1.jar started by POWER in C:\Users\POWER\Documents\Java\digital-wallet-refunds\digital-wallet-refunds)
+2026-09-17T21:57:47.269-06:00  INFO 34608 --- [           main] c.d.r.DigitalWalletRefundsApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-09-17T21:57:47.406-06:00  WARN 34608 --- [           main] onfigReactiveWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.digitalwallet.refunds.DigitalWalletRefundsApplication]
+2026-09-17T21:57:47.556-06:00 ERROR 34608 --- [           main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.digitalwallet.refunds.DigitalWalletRefundsApplication]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:179) ~[spring-context-6.1.12.jar!/:6.1.12]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:417) ~[spring-context-6.1.12.jar!/:6.1.12]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:290) ~[spring-context-6.1.12.jar!/:6.1.12]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349) ~[spring-context-6.1.12.jar!/:6.1.12]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118) ~[spring-context-6.1.12.jar!/:6.1.12]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:789) ~[spring-context-6.1.12.jar!/:6.1.12]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:607) ~[spring-context-6.1.12.jar!/:6.1.12]
+	at org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext.refresh(ReactiveWebServerApplicationContext.java:66) ~[spring-boot-3.3.3.jar!/:3.3.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.3.3.jar!/:3.3.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.3.3.jar!/:3.3.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335) ~[spring-boot-3.3.3.jar!/:3.3.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363) ~[spring-boot-3.3.3.jar!/:3.3.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352) ~[spring-boot-3.3.3.jar!/:3.3.3]
+	at com.digitalwallet.refunds.DigitalWalletRefundsApplication.main(DigitalWalletRefundsApplication.java:15) ~[!/:0.0.1]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:102) ~[digital-wallet-refunds-0.0.1.jar:0.0.1]
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:64) ~[digital-wallet-refunds-0.0.1.jar:0.0.1]
+	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:40) ~[digital-wallet-refunds-0.0.1.jar:0.0.1]
+Caused by: org.springframework.context.annotation.ConflictingBeanDefinitionException: Annotation-specified bean name 'refundEventProducer' for bean class [com.digitalwallet.refunds.kafka.RefundEventProducer] conflicts with existing, non-compatible bean definition of same name and class [com.digitalwallet.refunds.event.RefundEventProducer]
+	at org.springframework.context.annotation.ClassPathBeanDefinitionScanner.checkCandidate(ClassPathBeanDefinitionScanner.java:361) ~[spring-context-6.1.12.jar!/:6.1.12]
+	at org.springframework.context.annotation.ClassPathBeanDefinitionScanner.doScan(ClassPathBeanDefinitionScanner.java:288) ~[spring-context-6.1.12.jar!/:6.1.12]
+	at org.springframework.context.annotation.ComponentScanAnnotationParser.parse(ComponentScanAnnotationParser.java:128) ~[spring-context-6.1.12.jar!/:6.1.12]
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:306) ~[spring-context-6.1.12.jar!/:6.1.12]
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:246) ~[spring-context-6.1.12.jar!/:6.1.12]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:197) ~[spring-context-6.1.12.jar!/:6.1.12]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:165) ~[spring-context-6.1.12.jar!/:6.1.12]
+	... 18 common frames omitted
+
