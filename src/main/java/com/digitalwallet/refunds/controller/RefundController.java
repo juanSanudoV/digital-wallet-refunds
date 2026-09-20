@@ -27,8 +27,12 @@ public class RefundController {
     }
 
     @GetMapping
-    public Flux<RefundResponse> getAllRefunds() {
-        return refundService.getAllRefunds();
+    public Flux<RefundResponse> getAllRefunds(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return refundService.getAllRefunds()
+                .skip((long) page * size)
+                .take(size);
     }
 
     @GetMapping("/{id}")
