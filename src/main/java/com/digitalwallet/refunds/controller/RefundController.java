@@ -10,6 +10,14 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api/v1/refunds")
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", methods = {
+    RequestMethod.GET, 
+    RequestMethod.POST, 
+    RequestMethod.PATCH, 
+    RequestMethod.PUT, 
+    RequestMethod.DELETE, 
+    RequestMethod.OPTIONS
+})
 public class RefundController {
 
     private final RefundService refundService;
@@ -32,5 +40,12 @@ public class RefundController {
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<RefundResponse> createRefund(@RequestBody RefundRequest request) {
         return refundService.processRefund(request);
+    }
+
+    @PatchMapping("/{id}/status")
+    public Mono<RefundResponse> updateRefundStatus(
+            @PathVariable Long id,
+            @RequestParam String status) {
+        return refundService.updateStatus(id, status);
     }
 }

@@ -3,7 +3,6 @@ package com.digitalwallet.refunds.service;
 import com.digitalwallet.refunds.dto.RefundRequest;
 import com.digitalwallet.refunds.dto.RefundResponse;
 import com.digitalwallet.refunds.entity.Refund;
-import com.digitalwallet.refunds.exception.RefundNotFoundException;
 import com.digitalwallet.refunds.repository.RefundRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -18,6 +17,18 @@ public class RefundServiceImpl implements RefundService {
 
     public RefundServiceImpl(RefundRepository refundRepository) {
         this.refundRepository = refundRepository;
+    }
+
+    @Override
+    public Flux<RefundResponse> getAllRefunds() {
+        return refundRepository.findAll()
+                .map(this::mapToResponse);
+    }
+
+    @Override
+    public Mono<RefundResponse> getRefundById(Long id) {
+        return refundRepository.findById(id)
+                .map(this::mapToResponse);
     }
 
     @Override
@@ -36,16 +47,14 @@ public class RefundServiceImpl implements RefundService {
     }
 
     @Override
-    public Flux<RefundResponse> getAllRefunds() {
-        return refundRepository.findAll()
-                .map(this::mapToResponse);
-    }
-
-    @Override
-    public Mono<RefundResponse> getRefundById(Long id) {
+    public Mono<RefundResponse> updateStatus(Long id, String status) {
         return refundRepository.findById(id)
-                .map(this::mapToResponse)
-                .switchIfEmpty(Mono.error(new RefundNotFoundException(id)));
+                .switchIfEmpty(Mono.error(new RuntimeException("Devolución no encontrada")))
+                .flatMap(refund -> {
+                    refund.setStatus(status);
+                    return refundRepository.save(refund);
+                })
+                .map(this::mapToResponse);
     }
 
     private RefundResponse mapToResponse(Refund refund) {
