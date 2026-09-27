@@ -6,8 +6,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface RefundService {
-    Flux<RefundResponse> getAllRefunds();
-    Mono<RefundResponse> getRefundById(Long id);
+    Mono<RefundResponse> createRefund(RefundRequest request);
     Mono<RefundResponse> processRefund(RefundRequest request);
     Mono<RefundResponse> updateStatus(Long id, String status);
+    Flux<RefundResponse> getAllRefunds();
+    Mono<RefundResponse> getRefundById(Long id);
 }

@@ -3,21 +3,12 @@ package com.digitalwallet.refunds.controller;
 import com.digitalwallet.refunds.dto.RefundRequest;
 import com.digitalwallet.refunds.dto.RefundResponse;
 import com.digitalwallet.refunds.service.RefundService;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api/v1/refunds")
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", methods = {
-    RequestMethod.GET, 
-    RequestMethod.POST, 
-    RequestMethod.PATCH, 
-    RequestMethod.PUT, 
-    RequestMethod.DELETE, 
-    RequestMethod.OPTIONS
-})
 public class RefundController {
 
     private final RefundService refundService;
@@ -27,12 +18,8 @@ public class RefundController {
     }
 
     @GetMapping
-    public Flux<RefundResponse> getAllRefunds(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        return refundService.getAllRefunds()
-                .skip((long) page * size)
-                .take(size);
+    public Flux<RefundResponse> getAllRefunds() {
+        return refundService.getAllRefunds();
     }
 
     @GetMapping("/{id}")
@@ -41,15 +28,12 @@ public class RefundController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     public Mono<RefundResponse> createRefund(@RequestBody RefundRequest request) {
         return refundService.processRefund(request);
     }
 
     @PatchMapping("/{id}/status")
-    public Mono<RefundResponse> updateRefundStatus(
-            @PathVariable Long id,
-            @RequestParam String status) {
+    public Mono<RefundResponse> updateStatus(@PathVariable Long id, @RequestParam String status) {
         return refundService.updateStatus(id, status);
     }
 }
