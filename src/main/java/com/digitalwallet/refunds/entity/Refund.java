@@ -1,8 +1,5 @@
 package com.digitalwallet.refunds.entity;
-
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.domain.Persistable;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -10,7 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Table("refunds")
-public class Refund implements Persistable<Long> {
+public class Refund {
 
     @Id
     private Long id;
@@ -31,23 +28,8 @@ public class Refund implements Persistable<Long> {
     @Column("created_at")
     private LocalDateTime createdAt;
 
-    @Transient
-    private boolean isNewRecord = true;
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public boolean isNew() {
-        return isNewRecord || id == null;
-    }
-
-    public void setNewRecord(boolean newRecord) {
-        this.isNewRecord = newRecord;
-    }
-
+    // Getters y Setters
+    public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getSku() { return sku; }
     public void setSku(String sku) { this.sku = sku; }
